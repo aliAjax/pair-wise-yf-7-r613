@@ -20,6 +20,24 @@
         </div>
       </header>
 
+      <section class="shift-bar" aria-label="交接班编排">
+        <div class="shift-id">
+          <label class="worker-field">
+            当班人
+            <input id="workerInput" type="text" maxlength="12" />
+          </label>
+          <div class="shift-meta">
+            <strong id="shiftRevision"></strong>
+            <span id="shiftNotice" class="shift-notice"></span>
+          </div>
+        </div>
+        <div class="shift-actions">
+          <span id="shiftStatus" class="badge edit">编辑中</span>
+          <button id="commitShiftBtn" class="primary" type="button">提交班次</button>
+          <button id="releaseShiftBtn" type="button">重领班次</button>
+        </div>
+      </section>
+
       <section class="settings-bar" aria-label="版面设置">
         <label>
           纸张
@@ -77,11 +95,12 @@
           <div class="status-strip">
             <div>
               <strong id="selectedTypeLabel">未选择字模</strong>
-              <span>点击字模后，在版面格子中落字，也可拖拽字模到版面。</span>
+              <span>本班改动不会直接生效，提交班次时才写入；撞班会显示冲突格与两边的字模。</span>
             </div>
             <div id="shortageBadge" class="badge ok">数量充足</div>
           </div>
           <div id="stage" class="stage" aria-label="排版画布"></div>
+          <div id="conflictList" class="conflict-list" aria-live="polite"></div>
         </section>
 
         <aside class="panel draft-panel">
@@ -91,7 +110,7 @@
           </div>
           <div id="usageList" class="usage-list"></div>
           <div class="divider"></div>
-          <h3>已保存草稿</h3>
+          <h3>已确认班次草稿</h3>
           <div id="draftList" class="draft-list"></div>
         </aside>
       </section>
