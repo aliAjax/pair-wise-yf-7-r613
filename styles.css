@@ -386,10 +386,222 @@ h3 {
   gap: 6px;
 }
 
+.draft-save-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.draft-save-row #clearBoardBtn {
+  grid-column: span 2;
+}
+
 .draft-actions button {
   flex: 1;
   padding: 8px;
 }
+
+/* ---------- 班次编排 ---------- */
+
+.shift-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 250, 241, 0.92);
+  box-shadow: var(--shadow);
+  padding: 8px 10px;
+}
+
+.shift-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.shift-meta strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.shift-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.shift-actions button {
+  padding: 8px 12px;
+}
+
+.shift-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.shift-hint {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.banner {
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.banner.conflict {
+  border: 1px solid var(--red);
+  background: rgba(164, 64, 55, 0.08);
+}
+
+.banner.warn {
+  border: 1px solid var(--gold);
+  background: rgba(183, 134, 44, 0.1);
+}
+
+.banner-head {
+  margin-bottom: 6px;
+}
+
+.conflict-list {
+  display: grid;
+  gap: 6px;
+}
+
+.conflict-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: #fffdf8;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.conflict-where {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.conflict-pick {
+  display: flex;
+  gap: 6px;
+}
+
+.conflict-pick button {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.conflict-pick [data-keep-ours],
+.conflict-pick [data-keep-qty-ours] {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.conflict-pick [data-accept-theirs],
+.conflict-pick [data-accept-qty-theirs] {
+  border-color: var(--muted);
+}
+
+.return-reasons {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--red);
+}
+
+.return-reasons li {
+  margin: 2px 0;
+}
+
+/* 本班次未提交的落字：虚线淡底，与头版实线格区分 */
+.cell.pending {
+  border-style: dashed;
+  border-color: var(--blue);
+  background: rgba(54, 95, 125, 0.08);
+  color: var(--blue);
+}
+
+/* 冲突格：红框，双方字模各占一角 */
+.cell.conflict {
+  border-style: solid;
+  border-color: var(--red);
+  background: #fffdf8;
+  padding: 0;
+  overflow: hidden;
+}
+
+.conflict-chip {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(14px, 2.4vw, 24px);
+  font-weight: 900;
+}
+
+.conflict-chip.ours {
+  background: rgba(54, 95, 125, 0.18);
+  color: var(--blue);
+}
+
+.conflict-chip.theirs {
+  background: rgba(164, 64, 55, 0.16);
+  color: var(--red);
+}
+
+/* 待提交的新增字模卡 */
+.type-card.pending-new {
+  border-style: dashed;
+  border-color: var(--blue);
+}
+
+.pending-tag {
+  margin-left: 4px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(54, 95, 125, 0.15);
+  color: var(--blue);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.qty-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.qty-input {
+  width: 56px;
+  padding: 4px 6px;
+  text-align: center;
+}
+
+.qty-input.changed {
+  border-color: var(--gold);
+  background: rgba(183, 134, 44, 0.12);
+}
+
 
 .divider {
   height: 1px;

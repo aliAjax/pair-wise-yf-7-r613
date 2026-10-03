@@ -10,13 +10,20 @@
     <main class="shell">
       <header class="topbar">
         <div>
-          <p class="eyebrow">本地活字印章排版</p>
+          <p class="eyebrow">本地活字印章排版 · 双开班次</p>
           <h1>活字排版工坊</h1>
         </div>
-        <div class="top-actions">
-          <button id="saveDraftBtn" class="primary">保存草稿</button>
-          <button id="exportBtn">导出预览图</button>
-          <button id="clearBoardBtn">清空版面</button>
+        <div class="shift-bar" aria-label="班次编排">
+          <div class="shift-meta">
+            <span>班次 <strong id="shiftIdLabel">—</strong></span>
+            <span>基线 <strong id="baseRevLabel">0</strong></span>
+            <span>头版 <strong id="headRevLabel">0</strong></span>
+            <span id="shiftStatus" class="badge ok">编辑中</span>
+          </div>
+          <div class="shift-actions">
+            <button id="newWindowBtn" type="button" title="再开一个窗口领一份新班次，两人同时改同一张版">新开窗口</button>
+            <button id="commitShiftBtn" class="primary" type="button">提交班次</button>
+          </div>
         </div>
       </header>
 
@@ -44,6 +51,7 @@
           作品名
           <input id="workTitle" type="text" placeholder="例：晚风小笺" />
         </label>
+        <p class="shift-hint">落字与数量改动都记在本班次，提交后才进头版；草稿与导出只认已确认班次。</p>
       </section>
 
       <section class="workspace">
@@ -74,10 +82,22 @@
         </aside>
 
         <section class="stage-wrap">
+          <div id="conflictBanner" class="banner conflict" hidden>
+            <div class="banner-head">
+              <strong>提交冲突：</strong>对方已先写入头版，以下格子两边选了不同字模，请取舍后再提交。
+            </div>
+            <div id="conflictList" class="conflict-list"></div>
+          </div>
+          <div id="returnBanner" class="banner warn" hidden>
+            <div class="banner-head">
+              <strong>班次退回：</strong>头版字模数量已更新，本班次以下用量超限，请调整后再提交。
+            </div>
+            <ul id="returnReasons" class="return-reasons"></ul>
+          </div>
           <div class="status-strip">
             <div>
               <strong id="selectedTypeLabel">未选择字模</strong>
-              <span>点击字模后，在版面格子中落字，也可拖拽字模到版面。</span>
+              <span>点击字模后，在版面格子中落字，也可拖拽字模到版面。虚线格为本班次未提交的落字。</span>
             </div>
             <div id="shortageBadge" class="badge ok">数量充足</div>
           </div>
@@ -91,6 +111,11 @@
           </div>
           <div id="usageList" class="usage-list"></div>
           <div class="divider"></div>
+          <div class="draft-save-row">
+            <button id="saveDraftBtn" type="button">保存草稿</button>
+            <button id="exportBtn" type="button">导出预览图</button>
+            <button id="clearBoardBtn" type="button">清空版面</button>
+          </div>
           <h3>已保存草稿</h3>
           <div id="draftList" class="draft-list"></div>
         </aside>
